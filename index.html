@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon-32x32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice App</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="drawer">
+      <p class="drawer-heading">Create Invoice</p>
+      <div class="drawer-box">
+        <div class="drawer-from-box">
+          <p class="drawer-box-heading">Bill From</p>
+          <div class="drawer-input-box">
+            <p class="drawer-input-txt">Street Address</p>
+            <input class="drawer-input" />
+          </div>
+
+          <div class="drawer-input-container">
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">City</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">Post Code</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">Country</p>
+              <input class="drawer-input" />
+            </div>
+          </div>
+        </div>
+
+        <div class="drawer-to-box">
+          <p class="drawer-box-heading">Bill To</p>
+
+          <div class="drawer-input-box">
+            <p class="drawer-input-txt">Client's Name</p>
+            <input class="drawer-input" />
+          </div>
+
+          <div class="drawer-input-box">
+            <p class="drawer-input-txt">Client's Email</p>
+            <input class="drawer-input" />
+          </div>
+
+          <div class="drawer-input-box">
+            <p class="drawer-input-txt">Street Address</p>
+            <input class="drawer-input" />
+          </div>
+
+          <div class="drawer-input-container">
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">City</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">Post Code</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">Country</p>
+              <input class="drawer-input" />
+            </div>
+          </div>
+        </div>
+
+        <div class="drawer-info-box">
+          <div class="drawer-input-container">
+            <div class="drawer-input-box input-box-of2">
+              <p class="drawer-input-txt">Invoice Date</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box input-box-of2">
+              <p class="drawer-input-txt">Payment Terms</p>
+              <input class="drawer-input" />
+            </div>
+          </div>
+          <div class="drawer-input-box">
+            <p class="drawer-input-txt">Description</p>
+            <input class="drawer-input" />
+          </div>
+        </div>
+
+        <div class="drawer-items-box">
+          <p class="drawer-items-heading">ItemList</p>
+
+          <div class="drawer-items-container">
+            <div class="drawer-input-box item-name-box">
+              <p class="drawer-input-txt">Item Name</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box item-qty-box">
+              <p class="drawer-input-txt">Qty.</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box item-price-box">
+              <p class="drawer-input-txt">Price</p>
+              <input class="drawer-input" />
+            </div>
+
+            <div class="drawer-input-box">
+              <p class="drawer-input-txt">Total</p>
+              <p class="drawer-item-total">0</p>
+            </div>
+            <img
+              class="drawer-item-delete-img"
+              src="public/assets/icon-delete.svg"
+            />
+          </div>
+
+          <button class="drawer-item-add-btn">+Add New Item</button>
+        </div>
+      </div>
+
+      <div class="drawer-btns-box">
+        <button class="drawer-discard-btn">Discard</button>
+        <div class="drawer-btns-container">
+          <button class="drawer-save-draft-btn">Save as Draft</button>
+          <button class="drawer-save-send-btn">Save & Send</button>
+        </div>
+      </div>
+    </div>
+    <div class="invoice-page">
+      <div class="go-back-btn">
+        <img
+          class="go-back-arrow-img"
+          src="public/assets/icon-arrow-left.svg"
+        />
+        <p class="go-back-btn-txt">Go back</p>
+      </div>
+
+      <div class="invoice-page-box1">
+        <div class="invoice-page-container">
+          <p>Status</p>
+
+          <p class="list-item-btn pending-btn">
+            <span class="list-item-btn-dot"></span>Pending
+          </p>
+        </div>
+        <div class="invoice-page-container">
+          <button class="invoice-page-edit-btn">Edit</button>
+          <button class="invoice-page-delete-btn">Delete</button>
+          <button class="invoice-page-mark-paid-btn">Mark As Paid</button>
+        </div>
+      </div>
+      <div class="invoice-page-box2">
+        <div class="invoice-page-container1">
+          <div>
+            <p>#AA1449</p>
+            <p>Re-branding</p>
+          </div>
+          <div>
+            <p>19 Union Terrace</p>
+            <p>London</p>
+            <p>E1 3EZ</p>
+            <p>United Kingdom</p>
+          </div>
+        </div>
+        <div class="invoice-page-container1">
+          <div>
+            <div>
+              <p>Invoice Date</p>
+              <p>07 Oct 2021</p>
+            </div>
+            <div>
+              <p>Payment Due</p>
+              <p>14 Oct 2021</p>
+            </div>
+          </div>
+          <div>
+            <p>Bill To</p>
+            <p>Mellisa Clarke</p>
+            <p>46 Abbey Row</p>
+            <p>Cambridge</p>
+            <p>CB5 6EG</p>
+            <p>United Kingdom</p>
+          </div>
+          <div>
+            <p>Send To</p>
+            <p>mellisa.clarke@example.com</p>
+          </div>
+        </div>
+
+        <div class="invoice-page-item-box">
+          <ul class="invoice-page-item-list">
+            <li class="invoice-page-item-heading">
+              <p>Item Name</p>
+              <p>QTY.</p>
+              <p>Price</p>
+              <p>Total</p>
+            </li>
+            <li class="invoice-page-item">
+              <p>New Logo</p>
+              <p>1</p>
+              <p>&euro;1,532.33</p>
+              <p>&euro;1,532.33</p>
+            </li>
+          </ul>
+          <div class="invoice-page-item-due-box">
+            <p>Amount Due</p>
+            <p>&euro;4,0232.33</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side-box">
+      <div class="logo-box">
+        <img class="logo-img" src="assets/logo.svg" />
+        <div class="logo-box-half"></div>
+      </div>
+      <div class="theme-box">
+        <div class="theme-img-box">
+          <img class="theme-img" src="assets/icon-sun.svg" />
+        </div>
+        <div class="h-line"></div>
+        <div class="avatar-img-box">
+          <img class="avatar-img" src="assets/image-avatar.jpg" />
+        </div>
+      </div>
+    </aside>
+    <div class="app-container">
+      <aside class="invoice-box">
+        <div class="invoice-about-box">
+          <div class="invoice-about-left">
+            <h1>Invoices</h1>
+            <p>
+              There are <span class="invoice-count">6</span> total invoices.
+            </p>
+          </div>
+          <div class="invoice-about-right">
+            <div class="filter-btn-box">
+              <button class="filter-btn">
+                Filter by status
+                <img
+                  class="filter-btn-img"
+                  src="public/assets/icon-arrow-down.svg"
+                />
+              </button>
+            </div>
+            <button class="new-invoice-btn">
+              <img
+                class="new-invoice-btn-img"
+                src="public/assets/icon-plus.svg"
+              />New Invoice
+            </button>
+
+            <div class="filter-dropdown">
+              <div class="filter-dropdown-item">
+                <div class="filter-dropdown-check"></div>
+                <p class="filter-dropdown-txt">Paid</p>
+              </div>
+
+              <div class="filter-dropdown-item">
+                <div class="filter-dropdown-check"></div>
+                <p class="filter-dropdown-txt">Pending</p>
+              </div>
+
+              <div class="filter-dropdown-item">
+                <div class="filter-dropdown-check"></div>
+                <p class="filter-dropdown-txt">Draft</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="invoice-list-box">
+          <ul class="invoice-list">
+            <li class="list-item">
+              <a class="list-item-link" href="#R3080">
+                <p class="list-item-id"><span>#</span>RT3080</p>
+                <p class="list-item-date">Due 19 Aug 2021</p>
+                <p class="list-item-name">Jensen Huang</p>
+                <p class="list-item-amount">&euro;1,800.33</p>
+                <p class="list-item-btn paid-btn">
+                  <span class="list-item-btn-dot paid-btn-dot"></span>Paid
+                </p>
+                <img
+                  class="list-item-img"
+                  src="public/assets/icon-arrow-right.svg"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
