@@ -1,5 +1,5 @@
 *,
-*::before,
+st *::before,
 *::after {
   box-sizing: border-box;
 }
@@ -63,8 +63,17 @@ a {
   --draft-btn-clr: rgb(55, 59, 83);
 
   --bg-primary: rgb(248, 248, 251);
-  --bg-secondary: white;
+  --bg-check: rgb(223, 227, 250);
   --bg-ternary: rgb(55, 59, 83);
+  --bg-secondary: rgb(248, 248, 251);
+  --bg-page-due-box: rgb(55, 59, 83);
+  --bg-drawer: rgb(255, 255, 255);
+
+  --bg-list-item: rgb(255, 255, 255);
+  --bg-dropdown: white;
+  --dropdown-box-shadow: rgba(72, 84, 159, 0.25) 0px 10px 20px;
+  --bg-drawer-add-btn: rgb(249, 250, 254);
+  /* --list-item-border: 1px solid transparent; */
 }
 
 body {
@@ -73,20 +82,37 @@ body {
   background-color: var(--bg-primary);
   overflow: hidden;
   position: relative;
+  transition: background 0.3s ease 0s;
+  /* opacity: 0.8; */
 }
 
+.c-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s;
+}
 
 .drawer {
-  width: 70%;
+  max-width: 750px;
   padding-top: 3rem;
-  padding-left: 3rem;
+  padding-left: 9.5rem;
   padding-right: 2rem;
   height: 100%;
-  position: absolute;
-  /* left: -100%; */
-  display: none;
-  background-color: white;
-  z-index: 2;
+  position: fixed;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  left: 0;
+  top: 0;
+  transform: translateX(-750px);
+
+  background-color: var(--bg-drawer);
+  z-index: 3;
+
+  transition: transform 0.5s cubic-bezier(0.82, 0.085, 0.395, 0.895);
 }
 
 .drawer-box {
@@ -95,8 +121,8 @@ body {
   padding-right: 2rem;
   margin: 2.5rem 0rem;
   padding-bottom: 1.5rem;
+  /* pointer-events: none; */
 }
-
 
 .drawer-heading {
   font-size: 1.5rem;
@@ -113,7 +139,6 @@ body {
   margin-top: 2.5rem;
 }
 
-
 .drawer-input-box {
   margin-top: 1.5rem;
 }
@@ -122,9 +147,22 @@ body {
   width: 100%;
   font-weight: bold;
   padding: 0.8rem;
-  border: 1px solid rgb(223, 227, 250);
+  border: 1px solid var(--bg-check);
   outline: none;
   margin-top: 0.5rem;
+  background-color: var(--bg-list-item);
+  color: var(--txt-secondary-clr);
+}
+
+#input-description::placeholder,
+#input-client-email::placeholder {
+  color: var(--txt-primary-clr);
+  font-weight: bold;
+}
+
+.drawer-input:visited,
+.drawer-input:focus {
+  border: 1px solid rgb(124, 93, 250);
 }
 
 .drawer-input-container {
@@ -140,8 +178,6 @@ body {
   color: var(--txt-primary-clr);
 }
 
-
-
 .drawer-input-container .input-box-of2 {
   width: 48%;
 }
@@ -151,6 +187,8 @@ body {
   font-weight: bold;
   color: rgb(119, 127, 152);
   margin-top: 2.5rem;
+
+  transition: color 0.3s ease 0s;
 }
 
 .drawer-items-container {
@@ -160,16 +198,23 @@ body {
   position: relative;
 }
 
-
 .drawer-item-total {
   padding: 0.8rem;
   margin-top: 1rem;
+  color: var(--txt-primary-clr);
+  font-weight: bold;
 }
 
 .drawer-item-delete-img {
   margin-top: 2.8rem;
   position: absolute;
   right: 0;
+  cursor: pointer;
+}
+
+.drawer-item-delete-img:hover {
+  filter: invert(68%) sepia(58%) saturate(5674%) hue-rotate(324deg)
+    brightness(91%) contrast(103%);
 }
 
 .item-qty-box {
@@ -185,10 +230,15 @@ body {
 .drawer-item-add-btn {
   width: 100%;
   padding: 1rem;
-  background-color: white;
+  background-color: var(--bg-drawer-add-btn);
+  color: var(--txt-primary-clr);
+
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s;
   border-radius: 1.5rem;
   border: none;
   margin-top: 1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .drawer-btns-box {
@@ -196,38 +246,227 @@ body {
   justify-content: space-between;
 }
 
-.drawer-btns-box button {
+.drawer-discard-btn {
+  background-color: var(--bg-drawer-add-btn);
+  color: var(--txt-primary-clr);
+}
+
+.drawer-save-draft-btn {
+  background-color: var(--bg-ternary);
+  color: var(--txt-primary-clr);
+}
+
+.drawer-save-send-btn {
+  background-color: var(--btn-primary-clr);
+  color: white;
+}
+
+/* .drawer-btns-box button { */
+/*   border: none; */
+/*   border-radius: 1.5rem; */
+/*   padding: 1rem 1.5rem; */
+/*   font-weight: bold; */
+/* } */
+
+.invoice-page {
+  margin-left: 7rem;
+  padding-top: 3.5rem;
+  display: none;
+}
+.invoice-page-div {
+  max-width: 650px;
+  margin: 0 auto;
+  /* margin-top: 1rem; */
+}
+
+.go-back-btn {
   border: none;
-  border-radius: 1.5rem;
-  padding: 1rem 1.5rem;
+  cursor: pointer;
+  background-color: inherit;
+  margin-bottom: 1.8rem;
+  color: var(--txt-secondary-clr);
+  transition: color 0.3s ease 0s;
+}
+.go-back-btn:hover .go-back-btn-txt {
+  color: rgb(136, 142, 176);
+}
+.go-back-btn,
+img {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.invoice-page-box1 {
+  display: flex;
+  padding: 1.5rem;
+  background-color: var(--bg-list-item);
+  justify-content: space-between;
+  border-radius: 8px;
+  transition: background 0.3s ease 0s;
+}
+.status-txt {
+  margin-right: 1rem;
+  color: var(--txt-primary-clr);
+}
+.invoice-page-container {
+  display: flex;
+  align-items: center;
+}
+
+.invoice-page-edit-btn {
+  margin-right: 1rem;
+  background-color: var(--bg-secondary);
+  color: var(--txt-primary-clr);
+  transition: background 0.3s ease 0s;
+}
+
+.invoice-page-delete-btn {
+  margin-right: 1rem;
+  background-color: var(--btn-secondary-clr);
+  color: white;
+  transition: background 0.3s ease 0s;
+}
+
+.invoice-page-mark-paid-btn {
+  background-color: var(--btn-primary-clr);
+  color: white;
+  transition: background 0.3s ease 0s;
+}
+
+.invoice-page-box2 {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--bg-list-item);
+  color: var(--txt-primary-clr);
+  border-radius: 8px;
+  transition: background 0.3s ease 0s;
+}
+
+.invoice-page-container1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.page-item-id {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--txt-secondary-clr);
+}
+
+.page-bill-from-box {
+  text-align: right;
+}
+
+.invoice-page-date-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page-invoice-date,
+.page-due-date {
+  color: var(--txt-secondary-clr);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.page-to-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--txt-secondary-clr);
+  margin-top: 0.6rem;
+  margin-bottom: 5px;
+}
+
+.page-to-email {
+  font-size: 0.8rem;
+  color: var(--txt-secondary-clr);
+  font-weight: bold;
+  margin-top: 0.6rem;
+}
+
+.invoice-page-item-table {
+  width: 100%;
+  padding: 1.5rem;
+  text-align: right;
+  background-color: var(--bg-secondary);
+  transition: background 0.3s ease 0s;
+}
+
+.invoice-page-item-head th {
+  font-weight: normal;
+}
+
+.invoice-page-item td {
+  padding-top: 2rem;
   font-weight: bold;
 }
 
-.invoice-page {
-  display: none;
+.page-item-name,
+.page-item-total {
+  color: var(--txt-secondary-clr);
 }
 
+.th-align-l {
+  text-align: left;
+}
+
+.th-align-c {
+  text-align: center;
+}
+
+.invoice-page-due-box {
+  background-color: var(--bg-page-due-box);
+  display: flex;
+  padding: 1.8rem;
+  color: white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  transition: background 0.3s ease 0s;
+}
+.page-amount-due {
+  font-size: 1.5rem;
+}
 
 .app-container {
-  display: flex;
+  /* display: none; */
   height: 100%;
-  justify-content: center;
   margin-left: 7rem;
+  padding-top: 1.2rem;
+  position: relative;
+}
+
+.overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: background 0.5s linear;
 }
 
 .side-box {
   background-color: var(--bg-ternary);
-  width: 7rem;
+  width: 6.5rem;
   height: 100%;
   border-top-right-radius: 1.2rem;
   border-bottom-right-radius: 1.2rem;
   position: absolute;
   left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   z-index: 3;
+  transition: background 0.3s ease 0s;
 }
 
 .logo-box {
@@ -262,13 +501,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
-.theme-img-box,
-.avatar-img-box {
+.avatar-img-box,
+.theme-img {
   padding: 0.3rem;
+  margin-left: 1rem;
   cursor: pointer;
 }
 
@@ -286,8 +526,9 @@ body {
 }
 
 .invoice-box {
-  min-width: 900px;
-  padding: 3rem 4rem;
+  max-width: 730px;
+  margin: 2rem auto;
+  /* padding: 3rem 4rem; */
 }
 .invoice-about-box {
   display: flex;
@@ -297,6 +538,7 @@ body {
 .invoice-about-left h1 {
   font-size: 2rem;
   letter-spacing: -1px;
+  color: var(--txt-secondary-clr);
 }
 
 .invoice-about-left p {
@@ -320,10 +562,14 @@ body {
   cursor: pointer;
   padding: 0.5rem 0rem;
   margin-right: 2.5rem;
+  color: var(--txt-secondary-clr);
+  transition: color 0.3s ease 0s, background 0.3s ease 0s;
 }
 
 .filter-btn-img {
   margin-left: 1rem;
+  transition: transform 0.3s ease 0s;
+  pointer-events: none;
 }
 
 .new-invoice-btn {
@@ -332,6 +578,7 @@ body {
   border: none;
   height: 3rem;
   background-color: var(--btn-primary-clr);
+  /* transition: background 0.3s ease 0s, color 0.3s ease 0s; */
   color: white;
   font-weight: bolder;
   border-radius: 2rem;
@@ -340,30 +587,46 @@ body {
   cursor: pointer;
 }
 
+.filter-dropdown-txt {
+  pointer-events: none;
+}
 .filter-dropdown {
   display: none;
   position: absolute;
+  color: var(--txt-secondary-clr);
   top: 100%;
-  margin-top: 0.5rem;
   left: 0;
-  background-color: white;
+  background-color: var(--bg-dropdown);
   width: 55%;
   z-index: 1;
   font-weight: bold;
   padding: 1.5rem;
-  border-radius: 3px;
-  -webkit-box-shadow: -1px 12px 33px -6px rgba(213, 213, 213, 1);
-  -moz-box-shadow: -1px 12px 33px -6px rgba(213, 213, 213, 1);
-  box-shadow: -1px 12px 33px -6px rgba(213, 213, 213, 1);
+  border-radius: 8px;
+  box-shadow: var(--dropdown-box-shadow);
+  transition: background 0.3s ease 0s, display 0.3s ease 0s;
 }
 
 .filter-dropdown-check {
   width: 1rem;
   height: 1rem;
   display: inline-block;
-  background-color: #D5D5D5;
+  background-color: var(--bg-check);
+  transition: background 0.3s ease 0s;
   margin-right: 1rem;
+  border: 1px solid transparent;
   border-radius: 3px;
+  transition: border 0.3s ease 0s, background 0.3s ease 0s;
+  pointer-events: none;
+}
+
+.filter-checked {
+  background: url("public/assets/icon-check.svg") no-repeat center;
+  background-color: rgb(124, 93, 250);
+  pointer-events: none;
+}
+
+.filter-dropdown-item:hover .filter-dropdown-check {
+  border-color: rgb(146, 119, 255);
 }
 
 .filter-dropdown-item:not(:last-child) {
@@ -380,6 +643,7 @@ body {
   padding: 0.6rem;
   border-radius: 50%;
   margin-right: 0.5rem;
+  pointer-events: none;
 }
 
 .invoice-list-box {
@@ -392,13 +656,19 @@ body {
 
 .list-item-link {
   display: flex;
-  background-color: white;
-  padding: 1.7rem;
+  background-color: var(--bg-list-item);
+  padding: 1rem 1.5rem;
+  border: 1px solid transparent;
   /* justify-content: space-between; */
   align-items: center;
-  border-radius: 3px;
+  border-radius: 8px;
   color: var(--txt-primary-clr);
   position: relative;
+  transition: border 0.3s ease 0s, background 0.3s ease 0s;
+}
+
+.list-item-link:hover {
+  border-color: rgb(146, 119, 255);
 }
 
 .list-item-date {
@@ -406,30 +676,36 @@ body {
 }
 
 .list-item-name {
-  margin-right: 5rem;
+  margin-right: 3rem;
 }
 
-.list-item-id, .list-item-amount{
+.list-item-id,
+.list-item-amount {
   font-weight: bold;
   color: var(--txt-secondary-clr);
   margin-right: 2rem;
 }
 
-.list-item-id span {
+.hash-txt {
   color: var(--txt-primary-clr);
 }
+
+/* .list-item-id span { */
+/*   color: var(--txt-primary-clr); */
+/* } */
 .list-item-amount {
   font-size: 1.1rem;
+  /* background-color: red; */
+  width: 10rem;
+  text-align: right;
 }
 
 .list-item-img {
   position: absolute;
-  right: 1.7rem;
+  right: 0.4rem;
 }
 
 .list-item-btn {
-  position: absolute;
-  right: 3.5rem;
   font-weight: bold;
   padding: 0.7rem;
   text-align: center;
@@ -444,12 +720,12 @@ body {
 
 .pending-btn {
   color: var(--pending-btn-clr);
+  background-color: rgba(255, 143, 0, 0.05);
 }
 
 .draft-btn {
   color: var(--draft-btn-clr);
 }
-
 
 .list-item-btn-dot {
   display: inline-block;
@@ -461,4 +737,7 @@ body {
 
 .paid-btn-dot {
   background-color: var(--paid-btn-clr);
+}
+.pending-btn-dot {
+  background-color: var(--pending-btn-clr);
 }
