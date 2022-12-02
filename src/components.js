@@ -27,11 +27,11 @@ function onThemeSwitcherClick(state) {
 }
 
 function onFilterButtonClick(state) {
-  const display = ["none", "block"];
 
   return () => {
-    filterDropDown.style.display = display[state.dropDownIndex];
-    filterBtn.firstElementChild.style.transform = `rotate(${-180 * state.dropDownIndex
+    console.log("clicked", state.dropDownIndex);
+    filterDropDown.style.display = state.dropDownState[state.dropDownIndex];
+    filterBtn.children[2].style.transform = `rotate(${-180 * state.dropDownIndex
       }deg)`;
     state.dropDownIndex ^= 1;
   };

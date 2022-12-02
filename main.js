@@ -11,16 +11,18 @@ import {
 } from "./src/components.js";
 import { appState as state, appLocalState as localState } from "./src/state.js";
 
-
 themeSwitch.addEventListener("click", onThemeSwitcherClick(state));
 
 filterBtn.addEventListener("click", onFilterButtonClick(localState));
 
 filterDropDown.addEventListener("click", onFilterCheckClick(state));
 
-document.querySelector(".new-invoice-btn").addEventListener("click", onNewInvoiceBtnClick(localState) );
+document
+  .querySelector(".new-invoice-btn")
+  .addEventListener("click", onNewInvoiceBtnClick(localState));
 
 document.body.addEventListener("click", (event) => {
+  console.log(event.target.className);
   if (
     event.target.className != "filter-dropdown" &&
     event.target.className != "filter-btn" &&
@@ -28,7 +30,7 @@ document.body.addEventListener("click", (event) => {
   ) {
     if (localState.dropDownIndex == 0) {
       filterDropDown.style.display = "none";
-      filterBtn.firstElementChild.style.transform = "rotate(0deg)";
+      filterBtn.children[2].style.transform = "rotate(0deg)";
       localState.dropDownIndex = 1;
     }
   }

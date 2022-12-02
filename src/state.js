@@ -1,12 +1,12 @@
 // load from local storage
-const appState = {
+let appState = {
   theme: 0, // light theme
   filterChecked: "filter-draft-check",
   dropDown: 0,
 };
 
-const appLocalState = {
-  dropDownState: ["none", "display"],
+let appLocalState = {
+  dropDownState: ["none", "block"],
   dropDownIndex: 1,
   drawerState: 0,
 };
