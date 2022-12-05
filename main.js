@@ -9,6 +9,7 @@ import {
   drawer,
   overlay,
 } from "./src/components.js";
+import { loadLocalInvoices, renderInvoices } from "./src/invoices.js";
 import { appState as state, appLocalState as localState } from "./src/state.js";
 
 themeSwitch.addEventListener("click", onThemeSwitcherClick(state));
@@ -22,7 +23,6 @@ document
   .addEventListener("click", onNewInvoiceBtnClick(localState));
 
 document.body.addEventListener("click", (event) => {
-  console.log(event.target.className);
   if (
     event.target.className != "filter-dropdown" &&
     event.target.className != "filter-btn" &&
@@ -42,3 +42,6 @@ document.body.addEventListener("click", (event) => {
     }
   }
 });
+
+loadLocalInvoices("./data.json", renderInvoices);
+

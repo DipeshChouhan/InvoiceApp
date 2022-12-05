@@ -9,5 +9,6 @@ let appLocalState = {
   dropDownState: ["none", "block"],
   dropDownIndex: 1,
   drawerState: 0,
+  invoiceCount: 0,
 };
 export { appState, appLocalState };

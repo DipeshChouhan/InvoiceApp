@@ -29,7 +29,6 @@ function onThemeSwitcherClick(state) {
 function onFilterButtonClick(state) {
 
   return () => {
-    console.log("clicked", state.dropDownIndex);
     filterDropDown.style.display = state.dropDownState[state.dropDownIndex];
     filterBtn.children[2].style.transform = `rotate(${-180 * state.dropDownIndex
       }deg)`;
